@@ -2,45 +2,93 @@
 #: import window kivy.core.window.Window
 
 <MainWindow>:
+    MainScreen:
+    InfoScreen:
+
+<MainScreen>:
+    name: 'main_screen'
     btn_good: btn_good
     btn_bad: btn_bad
     lbl_status: lbl_status
-
-    orientation: 'vertical'
+    txt_msg: txt_msg
+    btn_info: btn_info
+    btn_settings: btn_settings
 
     BoxLayout:
-        orientation: 'horizontal' if window.width > window.height else 'vertical'
-        
+        orientation: 'vertical'
     
-        Button:
-            id: btn_good
-            background_color: (0, 1, 0, 1)
-            text: u'Good'
-            text_size: self.size
-            font_size: self.height/4
-            max_lines: 1
-            halign: 'center'
-            valign: 'middle'
+        TextInput:
+            id: txt_msg
+            hint_text: u'Action short description'
+            size_hint: 1, .1
+
+        BoxLayout:
+            orientation: 'horizontal' if window.width > window.height else 'vertical'
             
-            on_press: root.do_action('good')
-    
+        
+            Button:
+                id: btn_good
+                background_color: (0, 1, 0, 1)
+                text: u'Good'
+                text_size: self.size
+                font_size: self.height/4
+                max_lines: 1
+                halign: 'center'
+                valign: 'middle'
+                
+                on_press: root.do_action('good')
+        
+            
+            Button:
+                id: btn_bad
+                background_color: (1, 0, 0, 1)
+                text: u'Bad'
+                text_size: self.size
+                font_size: self.height/4
+                max_lines: 1
+                halign: 'center'
+                valign: 'middle'
+                
+                on_press: root.do_action('bad')
+        
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+
+            Label:
+                id: lbl_status
+                background_color: (0, 1, 0, 1)
+                size_hint: .8, 1
+                text: u'Status bar'
+                color: (88, 88, 88, .5)
+                halign: 'center'
+                valign: 'middle'
+                
+
+            Button:
+                id: btn_info
+                size_hint: .1, 1
+                text: u"i"
+                padding: (5, 5)
+                on_release: app.root.current = 'info_screen'
+            
+            Button:
+                id: btn_settings
+                size_hint: .1, 1
+                text: u"#"
+                padding: (5, 5)
+
+<InfoScreen>:
+    name: 'info_screen'
+
+    BoxLayout:
+        orientation: 'vertical'
+        
+        Label:
+            text: u'Info Screen'
         
         Button:
-            id: btn_bad
-            background_color: (1, 0, 0, 1)
-            text: u'Bad'
-            text_size: self.size
-            font_size: self.height/4
-            max_lines: 1
-            halign: 'center'
-            valign: 'middle'
-            
-            on_press: root.do_action('bad')
-    
-    Label:
-        id: lbl_status
-        size_hint: 1, None
-        text: u'Status'
-        height: root.height/10
-        font_size: self.height/2
-        color: (88, 88, 88, .5)
+            text: '< --'
+            size_hint: 1, .1
+            on_release: app.root.current = 'main_screen'
+

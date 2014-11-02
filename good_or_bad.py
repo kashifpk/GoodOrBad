@@ -13,7 +13,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 #import plyer
 
 
-class MainWindow(BoxLayout):
+class MainScreen(Screen):
     "Main screen of the app"
 
     def do_action(self, action):
@@ -24,6 +24,15 @@ class MainWindow(BoxLayout):
 
     def set_status(self, msg):
         self.lbl_status.text = msg
+
+
+class InfoScreen(Screen):
+    pass
+
+
+class MainWindow(ScreenManager):
+    "Main window of the app"
+    pass
 
 
 class GoodOrBadApp(App):
