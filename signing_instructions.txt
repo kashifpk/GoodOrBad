@@ -3,3 +3,7 @@ keytool -genkey -v -keystore android_app_keystores/good_or_bad_app.keystore -ali
 
 Sign app with key:
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /MyWork/android_app_keystores/good_or_bad_app.keystore GoodorBad-0.1-release-unsigned.apk GoodOrBad
+
+ZipAlign the apk:
+zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk
+

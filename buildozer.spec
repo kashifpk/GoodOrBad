@@ -32,7 +32,7 @@ version.filename = %(source.dir)s/main.py
 # version = 1.2.0
 
 # (list) Application requirements
-requirements = plyer,kivy,sqlalchemy
+requirements = plyer,kivy,sqlalchemy,sqlite3
 
 # (list) Garden requirements
 #garden_requirements =
@@ -64,10 +64,10 @@ android.api = 14
 android.minapi = 8
 
 # (int) Android SDK version to use
-android.sdk = 23
+android.sdk = 21
 
 # (str) Android NDK version to use
-android.ndk = 9d
+android.ndk = 9c
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 #android.private_storage = True
