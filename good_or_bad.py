@@ -12,6 +12,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 #import plyer
 
+from models import Deed
+from db import get_db_session, setup_db
+
 
 class MainScreen(Screen):
     "Main screen of the app"
@@ -38,6 +41,8 @@ class MainWindow(ScreenManager):
 class GoodOrBadApp(App):
     "The main app"
 
+    db = None
+
     def on_pause(self):
         # Here you can save data if needed
         return True
@@ -47,6 +52,9 @@ class GoodOrBadApp(App):
         pass
 
     def build(self):
+        if setup_db():
+            print("Database created!")
+
         return MainWindow()
 
 
