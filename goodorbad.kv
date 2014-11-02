@@ -1,0 +1,46 @@
+#:kivy 1.8.0
+#: import window kivy.core.window.Window
+
+<MainWindow>:
+    btn_good: btn_good
+    btn_bad: btn_bad
+    lbl_status: lbl_status
+
+    orientation: 'vertical'
+
+    BoxLayout:
+        orientation: 'horizontal' if window.width > window.height else 'vertical'
+        
+    
+        Button:
+            id: btn_good
+            background_color: (0, 1, 0, 1)
+            text: u'Good'
+            text_size: self.size
+            font_size: self.height/4
+            max_lines: 1
+            halign: 'center'
+            valign: 'middle'
+            
+            on_press: root.do_action('good')
+    
+        
+        Button:
+            id: btn_bad
+            background_color: (1, 0, 0, 1)
+            text: u'Bad'
+            text_size: self.size
+            font_size: self.height/4
+            max_lines: 1
+            halign: 'center'
+            valign: 'middle'
+            
+            on_press: root.do_action('bad')
+    
+    Label:
+        id: lbl_status
+        size_hint: 1, None
+        text: u'Status'
+        height: root.height/10
+        font_size: self.height/2
+        color: (88, 88, 88, .5)

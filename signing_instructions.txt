@@ -1,0 +1,5 @@
+Generate key (One time only):
+keytool -genkey -v -keystore android_app_keystores/good_or_bad_app.keystore -alias GoodOrBad -keyalg RSA -keysize 2048 -validity 10000
+
+Sign app with key:
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /MyWork/android_app_keystores/good_or_bad_app.keystore GoodorBad-0.1-release-unsigned.apk GoodOrBad
