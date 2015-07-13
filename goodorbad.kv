@@ -1,9 +1,13 @@
 #:kivy 1.8.0
 #: import window kivy.core.window.Window
+#: import HorizontalSpacer,VerticalSpacer spacer
+#: import Setting models
+# just checking out kivy language highlighting
 
 <MainWindow>:
     MainScreen:
     InfoScreen:
+    SettingScreen:
 
 <MainScreen>:
     name: 'main_screen'
@@ -13,9 +17,46 @@
     txt_msg: txt_msg
     btn_info: btn_info
     btn_settings: btn_settings
+    btn_sync: btn_sync
+    btn_load_sync: btn_load_sync
 
     BoxLayout:
         orientation: 'vertical'
+        
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+
+            HorizontalSpacer:
+                size_hint: .6, 1
+
+            Button:
+                id: btn_info
+                size_hint: .1, 1
+                text: u"i"
+                padding: (5, 5)
+                on_release: app.root.load_info_screen()
+            
+            Button:
+                id: btn_settings
+                size_hint: .1, 1
+                text: u"#"
+                padding: (5, 5)
+                on_release: app.root.load_settings_screen()
+            
+            Button:
+                id: btn_sync
+                size_hint: .1, 1
+                text: u"S"
+                padding: (5, 5)
+                on_release: root.sync_deeds()
+            
+            Button:
+                id: btn_load_sync
+                size_hint: .1, 1
+                text: u"L"
+                padding: (5, 5)
+                on_release: root.load_deeds()
     
         TextInput:
             id: txt_msg
@@ -59,25 +100,12 @@
                 id: lbl_status
                 disabled: True
                 background_color: (1, 1, 1, .3)
-                size_hint: .8, 1
+                size_hint: 1, 1
                 text: u'Status bar'
                 color: (88, 88, 88, .5)
                 halign: 'center'
                 valign: 'middle'
-                
-
-            Button:
-                id: btn_info
-                size_hint: .1, 1
-                text: u"i"
-                padding: (5, 5)
-                on_release: app.root.load_info_screen()
             
-            Button:
-                id: btn_settings
-                size_hint: .1, 1
-                text: u"#"
-                padding: (5, 5)
 
 <InfoScreen>:
     name: 'info_screen'
@@ -223,3 +251,78 @@
                 app.root.transition.direction = 'right'
                 app.root.current = 'main_screen'
 
+<SettingScreen>:
+    name: 'settings_screen'
+    
+    txt_user_id: txt_user_id
+    txt_password: txt_password
+    btn_save_settings: btn_save_settings
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        
+        VerticalSpacer:
+            size_hint: 1, .1
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            padding: 5
+            
+            Label:
+                text: u'ID'
+                size_hint: .3, 1
+            
+            TextInput:
+                id: txt_user_id
+                hint_text: u'User ID/Email'
+                size_hint: .7, 1
+                #text: Setting.get('user_id', '')
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            padding: 5
+            
+            Label:
+                text: u'Password'
+                size_hint: .3, 1
+            
+            TextInput:
+                id: txt_password
+                hint_text: u'Password'
+                size_hint: .7, 1
+                password: True
+                #text: Setting.get('password', '')
+        
+        VerticalSpacer:
+            size_hint: 1, .1
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            
+            Label:
+                text: u''
+                size_hint: .2, 1
+            
+            Button:
+                id: btn_save_settings
+                text: u'Save Settings'
+                size_hint: .6, 1
+                on_press: root.save_settings()
+            
+            Label:
+                text: u''
+                size_hint: .2, 1
+        
+        VerticalSpacer:
+            size_hint: 1, .4
+
+        Button:
+            text: 'Back'
+            size_hint: 1, .1
+            on_release:
+                app.root.transition.direction = 'right'
+                app.root.current = 'main_screen'

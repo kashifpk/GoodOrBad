@@ -29,7 +29,7 @@ version.regex = __version__ = ['"](.*)['"]
 version.filename = %(source.dir)s/main.py
 
 # (str) Application versioning (method 2)
-# version = 1.2.0
+#version = 0.3
 
 # (list) Application requirements
 requirements = plyer,kivy,sqlalchemy,sqlite3
@@ -55,7 +55,7 @@ fullscreen = 0
 #
 
 # (list) Permissions
-#android.permissions = INTERNET,READ_PHONE_STATE
+android.permissions = INTERNET,READ_PHONE_STATE
 
 # (int) Android API to use
 android.api = 14
